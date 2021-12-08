@@ -1,5 +1,4 @@
 import ZetrixChainSdk from "zetrix-sdk-nodejs";
-// import ZetrixChainSdk from "./../../secret/zetrix-sdk-nodejs";
 
 export const Configuration = {
 	ZetrixRpcUrl: "20.205.238.226:19333",
