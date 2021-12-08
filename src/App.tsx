@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import LoadingOverlay from "react-loading-overlay";
 import { BeatLoader } from "react-spinners";
 import ZetrixEncryption from "zetrix-encryption-nodejs";
+// import ZetrixEncryption from "../secret/zetrix-encryption-nodejs";
 import "./App.css";
 import { Configuration, zetrix } from "./constants/configuration";
 import { extractOrAlertIfError, invokeContract } from "./utility/utility";
@@ -80,16 +81,16 @@ function App() {
 				alert(queryResponse.errorDesc);
 			}
 			//@ts-ignore
-			const result = queryResponse.result.query_rets[0].result;
-			const ownerItems = JSON.parse(result.value);
-			setItems(
-				Object.entries(ownerItems).map(([key, value]) => {
-					return {
-						key,
-						value: String(value || ""),
-					};
-				})
-			);
+			// const result = queryResponse.result.query_rets[0].result;
+			// const ownerItems = JSON.parse(result.value);
+			// setItems(
+			// 	Object.entries(ownerItems).map(([key, value]) => {
+			// 		return {
+			// 			key,
+			// 			value: String(value || ""),
+			// 		};
+			// 	})
+			// );
 			// console.log(ownerItems);
 			showLoading(false);
 		}
