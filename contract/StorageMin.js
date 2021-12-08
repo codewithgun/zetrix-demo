@@ -1,0 +1,5 @@
+"use strict";let TLog={Update:"Update",Insert:"Insert",Delete:"Delete"};function init(){return;}
+function loadStorageOf(owner){let storage=Chain.load(owner);return storage?JSON.parse(storage):{};}
+function saveStorageOf(owner,storage){Chain.store(owner,JSON.stringify(storage));}
+let globalMethods={upsert:function(key,value,owner){let storage=loadStorageOf(owner);let isUpdate=storage.hasOwnProperty(key);if(isUpdate){let oldValue=storage[key];storage[key]=value;saveStorageOf(owner,storage);Chain.tlog(TLog.Update,owner,oldValue,value);}else{storage[key]=value;saveStorageOf(owner,storage);Chain.tlog(TLog.Insert,owner,value);}},remove:function(key,owner){let storage=loadStorageOf(owner);Utils.assert(storage.hasOwnProperty(key),"unknown key");delete storage[key];Chain.tlog(TLog.Delete,owner,key);}};function main(input){let method=JSON.parse(input);Utils.assert(globalMethods.hasOwnProperty(method.name),"invalid method");globalMethods[method.name](...method.values,Chain.msg.sender);}
+function query(input){let queryInput=JSON.parse(input);return JSON.stringify(loadStorageOf(queryInput.owner));}

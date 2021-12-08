@@ -1,0 +1,17 @@
+.App {
+	color: white;
+	background-color: #282c34;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.section > div {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+th,
+td {
+	color: white !important;
+}
